@@ -27,6 +27,10 @@ DB_PATH = DATA_DIR / "bookings.db"
 PUBLIC_URL = os.getenv("PUBLIC_URL", "").rstrip("/")
 ADMIN_LOGIN = os.getenv("ADMIN_LOGIN", "admin")
 ADMIN_PASSWORD = os.getenv("ADMIN_PASSWORD", "change-me-now")
+# When true, an empty bookings table is seeded with a few sample appointments
+# so the admin calendar isn't blank on a freshly (re)started demo instance.
+# Leave this unset/false for real client deployments.
+DEMO_MODE = os.getenv("DEMO_MODE", "false").lower() in ("1", "true", "yes")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
 SMS_WEBHOOK_URL = os.getenv("SMS_WEBHOOK_URL", "")
@@ -114,6 +118,27 @@ def init_db() -> None:
             conn.execute("INSERT OR IGNORE INTO settings VALUES(?,?)", (key, value))
         if not conn.execute("SELECT 1 FROM admins LIMIT 1").fetchone():
             conn.execute("INSERT INTO admins(login,password_hash,created_at) VALUES(?,?,?)", (ADMIN_LOGIN, password_hash(ADMIN_PASSWORD), now()))
+        if DEMO_MODE and not conn.execute("SELECT 1 FROM bookings LIMIT 1").fetchone():
+            seed_demo_bookings(conn)
+
+
+def seed_demo_bookings(conn: sqlite3.Connection) -> None:
+    """Insert a handful of sample bookings dated relative to today, so a demo
+    instance always shows a populated calendar right after it (re)starts."""
+    sample = [
+        ("classic", "Классический маникюр", 25, 40, 1, "10:00", "Айгюн Мамедова", "+994501112233"),
+        ("gel", "Маникюр + гель-лак", 35, 70, 1, "14:30", "Лейла Гасанова", "+994552223344"),
+        ("pedicure", "Педикюр классический", 40, 80, 2, "11:00", "Наргиз Алиева", "+994703334455"),
+        ("combo", "Аппаратный маникюр", 30, 60, 3, "16:00", "Севиндж Багирова", "+994104445566"),
+    ]
+    for service_id, service, price, duration, day_offset, time_str, client_name, client_phone in sample:
+        day = (date.today() + timedelta(days=day_offset)).isoformat()
+        conn.execute(
+            "INSERT INTO bookings(service_id,service,price,duration,day,time,client_name,client_phone,"
+            "status,cancel_token,consent_at,created_at) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)",
+            (service_id, service, price, duration, day, time_str, client_name, client_phone,
+             "new", secrets.token_urlsafe(16), now(), now()),
+        )
 
 
 def get_settings() -> dict[str, str]:

@@ -17,6 +17,8 @@ services:
         sync: false
       - key: TELEGRAM_CHAT_ID
         sync: false
+      - key: DEMO_MODE
+        value: "false"
     disk:
       name: vernis-data
       mountPath: /opt/render/project/src/data

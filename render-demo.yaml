@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: vernis-demo
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: DATA_DIR
+        value: /opt/render/project/src/data
+      - key: ADMIN_LOGIN
+        sync: false
+      - key: ADMIN_PASSWORD
+        sync: false
+      - key: PUBLIC_URL
+        sync: false
+      - key: DEMO_MODE
+        value: "true"
+    # No disk on purpose: the free plan doesn't support persistent disks, so
+    # the SQLite file lives in the container's ephemeral filesystem. Every
+    # time the instance spins up from a cold start, init_db() recreates the
+    # schema and DEMO_MODE re-seeds sample services + bookings automatically.
+    # TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID / SMS_WEBHOOK_URL are intentionally
+    # left unset here so demo visitors never trigger real notifications.
