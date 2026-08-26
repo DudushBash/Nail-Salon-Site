@@ -1,0 +1,77 @@
+VERNIS COMMERCIAL SOURCE LICENSE
+Version 1.0 — 25 August 2026
+
+Copyright (c) 2026. All rights reserved.
+
+1. Grant of use
+The purchaser may install, run, modify and use this copy of the Vernis source
+code for one end customer and that customer's related business operations.
+
+2. Permitted modifications
+The purchaser may change branding, content, services, prices, settings and
+source code as needed for that end customer.
+
+3. Restrictions
+The purchaser may not resell, sublicense, publish, distribute or make the
+source code available as a template, SaaS product, starter kit or competing
+product. The purchaser may not transfer this license to another customer
+without the copyright holder's written permission.
+
+4. Third-party services
+Domain registration, hosting, SMS/WhatsApp providers, Telegram and any other
+third-party services are separate services. Their fees, terms and availability
+are the purchaser's responsibility.
+
+5. No warranty
+The software is provided "as is", without warranty of any kind. The purchaser
+is responsible for configuration, backups, legal texts and compliance with
+applicable privacy, consumer-protection and data-protection requirements.
+
+6. Liability
+To the maximum extent permitted by law, the copyright holder is not liable for
+any indirect, incidental, special or consequential damages arising from use of
+the software.
+
+EXTENDED LICENSE
+Version 1.0 — 25 August 2026
+
+Copyright (c) 2026. All rights reserved.
+
+This Extended License replaces Sections 1 and 3 of the Vernis Commercial
+Source License (Regular License) for purchasers who acquire the Extended
+tier. All other sections of the Regular License (Permitted modifications,
+Third-party services, No warranty, Liability) remain in effect unless
+restated below.
+
+1. Grant of use (Extended)
+The purchaser may install, run, modify and deploy this copy of the Vernis
+source code for multiple end customers, including use as part of a paid
+service the purchaser provides to those customers (for example, building,
+hosting, or maintaining booking sites for several salons or other
+businesses on their behalf).
+
+2. Charging end users
+Unlike the Regular License, the purchaser may charge its own end customers
+a one-time fee, a subscription, or a service fee for access to a
+deployment built from this source code.
+
+3. Restrictions
+The purchaser may not resell, sublicense, publish, or distribute the
+Vernis source code itself, or any substantially unmodified copy of it, as
+a template, starter kit, boilerplate, or competing product — whether for
+free or for payment. Each end customer receives access to a running
+deployment, not the source code. This license does not permit operating
+a multi-tenant SaaS product where the source code itself is the product
+being marketed or sold to third parties as "Vernis" or under a name
+implying it is the original template.
+
+4. Number of end customers
+This license does not limit the number of end customers the purchaser may
+serve, unless a specific customer count is stated on the order. There is
+one license per purchasing individual or company; it does not extend to
+other agencies, freelancers, or companies the purchaser subcontracts to
+without the copyright holder's written permission.
+
+5. Attribution
+The purchaser is not required to credit the original author to end
+customers, unless required separately by the marketplace's terms of sale.
